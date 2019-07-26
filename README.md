@@ -2,7 +2,7 @@
 Projects done under and for Electronika club
 
 ## **_Image Classification_**
-In this we will classify Images Cats and Dogs by building a **Convolutional Neural Network** in python and by using **Transfer Learning** in Matlab.
+In this we will classify Images Cats and Dogs by building a **Convolutional Neural Network** in Python and by using **Transfer Learning** in Matlab.
 
 ## Buliding a Convolutional Neural Network
 Run the code in Python folder in Anaconda or Google Colaboratory.
