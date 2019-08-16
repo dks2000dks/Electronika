@@ -1,4 +1,4 @@
-# Elektronica Electronic Club of IIT Hyderabad
+# Elektronica Electronics Club of IIT Hyderabad
 Projects done under and for Elektronica club
 
 ## **_Image Classification_**
