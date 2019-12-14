@@ -1,22 +1,27 @@
 %       Transfer Learning
 
 %{
-Transfer Learning is the process of modifing a existing Neural Network convinent to our application.
-Transfer learning is an efficient solution for many problems. Training requires some data and computer time, but much less than training from scratch, and the result is a network suited to your specific problem.
+    Transfer Learning is the process of modifing a existing Neural Network convinent to our application.
+    Transfer learning is an efficient solution for many problems. Training requires some data and computer time,
+    but much less than training from scratch, and the result is a network suited to your specific problem.
 %}
     
 %       Typical workflow for transfer learning
 
 %{
-To perform transfer learning, you need to create three components:
-An array of layers representing the network architecture. For transfer learning, this is created by modifying a pre-existing network such as AlexNet.
-Images with known labels to be used as training data. This is typically provided as a datastore.
-A variable containing the options that control the behavior of the training algorithm.
-These three components are provided as the inputs to the trainNetwork function which returns the trained network as output.
-You should test the performance of the newly trained network. If it is not adequate, typically you should try adjusting some of the training options and retraining.
+    To perform transfer learning, you need to create three components:
+    An array of layers representing the network architecture. For transfer learning,
+    this is created by modifying a pre-existing network such as AlexNet.
+    Images with known labels to be used as training data. This is typically provided as a datastore.
+    A variable containing the options that control the behavior of the training algorithm.
+    These three components are provided as the inputs to the trainNetwork function which returns the trained network as output.
+    You should test the performance of the newly trained network.
+    If it is not adequate, typically you should try adjusting some of the training options and retraining.
 %}
 
-%   Now we will be importing "AlexNet" with a convinent name(deepnet) for our usage. Layers function will display the layers in the network.(Remove " ; " to see the output)
+%{   Now we will be importing "AlexNet" with a convinent name(deepnet) for our usage.
+    Layers function will display the layers in the network.(Remove ';' to see the output)
+%}
 
 deepnetwork = alexnet
 layers = deepnetwork.Layers
@@ -29,17 +34,19 @@ imshow(img1)
 img2 = imread('dog.1.jpg');
 size(img2)
 imshow(img2)
-%   It can be observed that sizes of 2 images should be same as size of the input layer of "AlexNet". The below code gives the size of input layer.
+%   It can be observed that sizes of 2 images should be same as size of the input layer of "AlexNet".
+%   The below code gives the size of input layer.
 Input_image_size = layers(1).InputSize
 
 %   Pre-processing Images in a Datastore
 
 %{
 To classify images with a convolutional neural network, each image needs to have the size specified by the network's input layer. 
-Images usually require simple preprocessing before they can be classified. You can preprocess your images individually, but it is common to perform the same preprocessing steps on the entire data set. It is more efficient to apply these steps to the entire datastore.
-It can be time consuming to process each image individually. If you want to use an image datastore, you also need to save the processed images to a folder. For large data sets, saving a duplicate of your files can take up a lot of space.
-
-It can be time consuming to process each image individually. If you want to use an image datastore, you also need to save the processed images to a folder. For large data sets, saving a duplicate of your files can take up a lot of space.
+Images usually require simple preprocessing before they can be classified. You can preprocess your images individually,
+but it is common to perform the same preprocessing steps on the entire data set.
+It is more efficient to apply these steps to the entire datastore.
+It can be time consuming to process each image individually. If you want to use an image datastore,
+you also need to save the processed images to a folder. For large data sets, saving a duplicate of your files can take up a lot of space.
 You can perform basic preprocessing with the augmentedImageDatastore function, which takes an image datastore and an image size as an input.
 %}  
 
@@ -48,7 +55,8 @@ ds_pets = imageDatastore('Images','IncludeSubfolders',true,'LabelSource','folder
 %   Pet_Categories = ds_pets.Labels       ----  Prints each Category of
 %   Image 
 
-%   Entire data set is split into Training and Validation Data. Images in SubFolders will also be divided. "0.8" indicates the ratio of total belonging to TrainImgs.
+%   Entire data set is split into Training and Validation Data.
+%   Images in SubFolders will also be divided. "0.8" indicates the ratio of total belonging to TrainImgs.
 [trainImgs,testImgs] = splitEachLabel(ds_pets,0.8,'randomized')
 
 trainImgs = augmentedImageDatastore([227 227],trainImgs)
@@ -71,7 +79,8 @@ fclayer = fullyConnectedLayer(numClasses)
 % 23rd layer of AlexNet  should replaced by our layer
 layers(23) = fclayer
     
-%   You can use the classificationLayer function to create a new output layer for an image classification network. You can create new layers and overwrite an existing layer with the new layer in a single command.
+%   You can use the classificationLayer function to create a new output layer for an image classification network. 
+%   You can create new layers and overwrite an existing layer with the new layer in a single command.
 layers(end) = classificationLayer
 
 %   Now set Training Options
